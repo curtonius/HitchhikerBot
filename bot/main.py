@@ -28,6 +28,11 @@ role_type_dictionary = {
     }
 }
 
+channels = {
+  "🔔-assign-roles": 951692177086488626,
+  "bot-dev": 958468714846634004
+}
+
 
 @bot.event
 async def on_ready():
@@ -42,40 +47,51 @@ async def on_message(message):
 
 @bot.event
 async def on_raw_reaction_add(payload):
-    channel = bot.get_channel(payload.channel_id)
-    message = await channel.fetch_message(payload.message_id)
-    user = payload.member
-    emoji_check = str(payload.emoji)
+  if payload.channel_id != channels["🔔-assign-roles"]:
+    return
+    
+  channel = bot.get_channel(payload.channel_id)
+  message = await channel.fetch_message(payload.message_id)
+  user = payload.member
+  emoji_check = str(payload.emoji)
 
-    if message.content in role_type_dictionary.keys():
-        role = None
-        role_dictionary = role_type_dictionary[message.content]
-        if emoji_check in role_dictionary.keys():
-            role = get(user.guild.roles, name=role_dictionary[emoji_check])
-        else:
-            await message.remove_reaction(emoji_check, user)
+  if message.content in role_type_dictionary.keys():
+      role = None
+      role_dictionary = role_type_dictionary[message.content]
+      if emoji_check in role_dictionary.keys():
+          role = get(user.guild.roles, name=role_dictionary[emoji_check])
+      else:
+          await message.remove_reaction(emoji_check, user)
 
-        if role != None:
-            await user.add_roles(role)
+      if role != None:
+          await user.add_roles(role)
 
 
 @bot.event
 async def on_raw_reaction_remove(payload):
-    channel = bot.get_channel(payload.channel_id)
-    message = await channel.fetch_message(payload.message_id)
-    guild = await bot.fetch_guild(payload.guild_id)
-    user = await guild.fetch_member(payload.user_id)
-    emoji_check = str(payload.emoji)
+  if payload.channel_id != channels["🔔-assign-roles"]:
+    return
+    
+  channel = bot.get_channel(payload.channel_id)
+  message = await channel.fetch_message(payload.message_id)
+  guild = await bot.fetch_guild(payload.guild_id)
+  user = await guild.fetch_member(payload.user_id)
+  emoji_check = str(payload.emoji)
 
-    if message.content in role_type_dictionary.keys():
-        role = None
-        role_dictionary = role_type_dictionary[message.content]
-        if emoji_check in role_dictionary.keys():
-            role = get(user.guild.roles, name=role_dictionary[emoji_check])
+  if message.content in role_type_dictionary.keys():
+      role = None
+      role_dictionary = role_type_dictionary[message.content]
+      if emoji_check in role_dictionary.keys():
+          role = get(user.guild.roles, name=role_dictionary[emoji_check])
 
-        if role != None:
-            await user.remove_roles(role)
+      if role != None:
+          await user.remove_roles(role)
 
+@bot.command()
+async def get_channel_id(ctx):
+  channel = bot.get_channel(channels['bot-dev'])
+  await channel.send('Channel **' + ctx.channel.name + '** ID: ' + str(ctx.channel.id))
+  await ctx.message.delete()
 
 server.server()
 bot.run(TOKEN)
