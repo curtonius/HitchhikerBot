@@ -17,7 +17,7 @@ role_type_dictionary = {
         "🟡": 'Announcement Notifications'
     },
   
-    'React to this message with the gender roles you identify as.\n❤  He/Him\n🧡  She/Her\n💛  They/Them\n💚  He/They\n💙  She/They\n💜  Name Only\n🤍  Ask for Pronouns':
+    'React to this message with the gender roles you identify as.\n❤️  He/Him\n🧡  She/Her\n💛  They/Them\n💚  He/They\n💙  She/They\n💜  Name Only\n🤍  Ask for Pronouns':
     {
         "❤️": 'He/Him',
         "🧡": 'She/Her',
