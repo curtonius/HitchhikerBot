@@ -42,6 +42,7 @@ async def on_message(message):
 
 @bot.event
 async def on_raw_reaction_add(payload):
+    print('WHAT')
     channel = bot.get_channel(payload.channel_id)
     message = await channel.fetch_message(payload.message_id)
     user = payload.member
