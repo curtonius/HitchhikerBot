@@ -18,7 +18,7 @@ role_type_dictionary = {
     },
     'React to this message with the gender roles you identify as.\n❤  He/Him\n🧡  She/Her\n💛  They/Them\n💚  He/They\n💙  She/They\n💜  Name Only\n🤍  Ask for Pronoun':
     {
-        "❤": 'He/Him',
+        "❤️": 'He/Him',
         "🧡": 'She/Her',
         "💛": 'They/Them',
         "💚": 'He/They',
@@ -42,7 +42,6 @@ async def on_message(message):
 
 @bot.event
 async def on_raw_reaction_add(payload):
-    print('WHAT')
     channel = bot.get_channel(payload.channel_id)
     message = await channel.fetch_message(payload.message_id)
     user = payload.member
