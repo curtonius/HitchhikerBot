@@ -16,6 +16,7 @@ role_type_dictionary = {
         "🟣": 'Stream Notifications',
         "🟡": 'Announcement Notifications'
     },
+  
     'React to this message with the gender roles you identify as.\n❤  He/Him\n🧡  She/Her\n💛  They/Them\n💚  He/They\n💙  She/They\n💜  Name Only\n🤍  Ask for Pronouns':
     {
         "❤️": 'He/Him',
@@ -25,7 +26,7 @@ role_type_dictionary = {
         "💙": 'She/They',
         "💜": 'Name Only',
         "🤍": 'Ask for Pronouns'
-    }
+    },
 
     'React to this message with a ✅  to accept being pinged by anybody at any time (Non-Notification based pings)':
     {
