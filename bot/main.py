@@ -4,6 +4,7 @@ import os
 #import dnspython
 import server
 from discord.ext import commands
+from discord.utils import get
 
 bot = commands.Bot(command_prefix="!")
 TOKEN = os.getenv("DISCORD_TOKEN")
