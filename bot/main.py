@@ -24,7 +24,12 @@ role_type_dictionary = {
         "💚": 'He/They',
         "💙": 'She/They',
         "💜": 'Name Only',
-        "🤍": 'Ask for Pronoun'
+        "🤍": 'Ask for Pronouns'
+    }
+
+    'React to this message with a ✅  to accept being pinged by anybody at any time (Non-Notification based pings)':
+    {
+        "✅": 'Accept Pings'
     }
 }
 
