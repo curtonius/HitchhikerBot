@@ -44,7 +44,7 @@ async def on_message(message):
     if message.author == bot.user:
         return
 
-    await client.process_commands(message)
+    await bot.process_commands(message)
 
 
 @bot.event
@@ -94,6 +94,6 @@ async def get_channel_id(ctx):
   channel = bot.get_channel(channels['bot-dev'])
   await channel.send('Channel **' + ctx.channel.name + '** ID: ' + str(ctx.channel.id))
   await ctx.message.delete()
-
+  
 server.server()
 bot.run(TOKEN)
