@@ -100,6 +100,23 @@ async def get_channel_id(ctx):
   channel = bot.get_channel(channels['bot-dev'])
   await channel.send('Channel **' + ctx.channel.name + '** ID: ' + str(ctx.channel.id))
   await ctx.message.delete()
+
+@bot.command()
+async def prime_reactions(ctx):
+  channel = bot.get_channel(channels['bot-dev'])
+  await channel.send('Channel **' + ctx.channel.name + '** ID: ' + str(ctx.channel.id))
+  await ctx.message.delete()
+
+@bot.command()
+async def prime_reactions(ctx):
+	if ctx.message.reference == None:
+		return
+		
+	ref_message = await ctx.channel.fetch_message(ctx.message.reference.message_id)
+	await ctx.message.delete()
+	if ref_message.content in role_type_dictionary.keys():
+		for emoji_check in role_type_dictionary[ref_message.content].keys():
+			await ref_message.add_reaction(emoji_check)
   
 server.server()
 bot.run(TOKEN)
