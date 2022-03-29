@@ -44,6 +44,8 @@ async def on_message(message):
     if message.author == bot.user:
         return
 
+    await client.process_commands(message)
+
 
 @bot.event
 async def on_raw_reaction_add(payload):
