@@ -103,12 +103,6 @@ async def get_channel_id(ctx):
 
 @bot.command()
 async def prime_reactions(ctx):
-  channel = bot.get_channel(channels['bot-dev'])
-  await channel.send('Channel **' + ctx.channel.name + '** ID: ' + str(ctx.channel.id))
-  await ctx.message.delete()
-
-@bot.command()
-async def prime_reactions(ctx):
 	if ctx.message.reference == None:
 		return
 		
