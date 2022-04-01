@@ -109,7 +109,7 @@ bad_word = {
 	"w[e3êëèæ€][e3êëèæ€]*[t%+7][6b8][a@4^âäàåæáã][a@4^âäàåæáã]*[cç€©kq]", #wetback
 	"pn[il1!|ïîìí¡¦][il1!|ïîìí¡¦]*[sz5$§]", #penis
 	"h[o0ôöòó•Ø][o0ôöòó•Ø]*[6b8][a4@^âäàåæáã][a4@^âäàåæáã]*g", #hobag
-	"[cç€©<o0ôöòó•Ø6b8]=*[38bdo0ôöòó•Ø>]", #c==3
+	"[cç€©<o0ôöòó•Ø6b8]==*[38bdo0ôöòó•Ø>]", #c==3
 	"[sz5$§][uüûùúµ][cç€©kq] m[ÿ¥µŸý]", #suck my
 	"w[e3êëèæ€][e3êëèæ€]*[e3êëèæ€][e3êëèæ€]*w[e3êëèæ€][e3êëèæ€]*[e3êëèæ€][e3êëèæ€]*", #weewee
 	"p[o0ôöòó•Ø][o0ôöòó•Ø]*rn", #porn
@@ -125,16 +125,16 @@ exceptions = {
 	"assu", "shittim","shittah","shitake","cant", 
 	"benedick", "dickens","dicker",
 	"medick","dickey", "dickie","duck",
-	"dock","deck","[a-z,A-Z]d.k", "[a-z,A-Z]d.c", "doc",
+	"dock","deck","[a-zA-Z]d.k", "[a-zA-Z]d.c", "doc",
 	"d.c[a-bd-jl-z]","salvag","travag","vagabond","savag","vagra","vagar","selvag",
-	"ravage","vagility","[a-z,A-Z]arse","titis","titive","titud","titut","antit","titch",
+	"ravage","vagility","[a-zA-Z]arse","titis","titive","titud","titut","antit","titch",
 	"sanctit","titious","destit","tite","tition","constit","titying","tituency",
 	"butter","button","scuttlebutt","rebutt","buttress","abutt", "heteroclite",
-	"clitic","[a-z,A-Z]chode[a-z,A-Z]","cock[a-rt-z]","circum","docum","cumb","accum","cumulus","scum",
+	"clitic","[a-zA-Z]chode[a-zA-Z]","cock[a-rt-z]","circum","docum","cumb","accum","cumulus","scum",
 	"okeydoke","duke","goochie","[a-vx-z]ho","hospi","host","hous","horti","homog",
-	"holo","hot","home","horr","hors","honey","honor","hodge","[a-z,A-Z]hump","humpback","whose",
-	"whom","who\s","who\w","^who$","[a-z,A-Z]hole[a-z,A-Z]","^hole","\shole","unisex","sextup",
-	"ho[a-df-z0-9]","[a-z,A-Z]t it","sextil","who$","horendous","racoon", "retardant"
+	"holo","hot","home","horr","hors","honey","honor","hodge","[a-zA-Z]hump","humpback","whose",
+	"whom","who\s","who\w","^who$","[a-zA-Z]hole[a-zA-Z]","^hole","\shole","unisex","sextup",
+	"ho[a-df-z0-9]","[a-zA-Z]t it","sextil","who$","horendous","racoon", "retardant", "faq"
 }
 
 role_type_dictionary = {
@@ -186,14 +186,14 @@ async def on_message(message):
 	match = 0
 	
 	for pattern in bad_word:
-		result = re.match(pattern, str)
+		result = re.search(pattern, str)
 		if result:
 			matched = True
 			match += 1
 			print("Matched with: " + pattern)
 
 	for pattern in exceptions:
-		result = re.match(pattern, str)
+		result = re.search(pattern, str)
 		if result and matched == True:
 			match -= 1
 			print("Unmatched with: " + pattern)
