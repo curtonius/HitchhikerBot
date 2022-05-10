@@ -72,7 +72,6 @@ bad_word = {
 	"g[yi]psy", #g slur
 	"tra+n+y", #t slur
 	"she+ma+le", #shemale
-	"ba+s+ta+rd", #bastard
 	"d[yi]ke", #d slur
 	"fa+g", #f slur
 }
