@@ -77,7 +77,7 @@ bad_word = {
 }
 
 exceptions = {
-	"retardant", "rac+oon","cocoon","tycoon","cooncan", "puccoon","coontie", "coonskin", "coonhound", "beanery", "beaneries", "pachinko", "chinkapin", "chinquapin", "chinch", "chincapin", "vandyke", "klondike","fagin","fage"
+	"retardant", "rac+oon","cocoon","tycoon","cooncan", "puccoon","coontie", "coonskin", "coonhound", "beanery", "beaneries", "pachinko", "chinkapin", "chinquapin", "chinch", "chincapin", "vandyke", "klondike","fagin","fage","[a-mo-zA-MO-Z]nig", "nig[a-fh-zA-FH-Z]"
 }
 
 role_type_dictionary = {
