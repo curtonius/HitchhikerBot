@@ -174,7 +174,7 @@ async def on_message(message):
 			match -= 1
 
 	print(match)
-	if matched == True and match != 0:
+	if matched == True and match > 0:
 		channel = bot.get_channel(channels['bot-dev'])
 		await channel.send(message.author.display_name + " posted in " + "Channel **" + message.channel.name + "**:\n||" + message.content + "||" )
 		await message.delete()
