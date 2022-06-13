@@ -120,7 +120,9 @@ async def on_ready():
 
 @bot.event
 async def on_message_edit(before, message):
+	print("THIS DID RUN")
 	if message.author == bot.user:
+		print("WAS BOT")
 		return
 
 	str = message.content
@@ -142,10 +144,11 @@ async def on_message_edit(before, message):
 			match -= 1
 
 	if matched == True and match != 0:
+		print("NOT GOOD AT ALL")
 		channel = bot.get_channel(channels['bot-dev'])
 		await channel.send(message.author.display_name + " edited message in " + "Channel **" + message.channel.name + "**:\n" + before.content + "\nto\n " +  "||" + message.content+ "||")
 		#await message.delete()
-
+	print("SOMETHING HAPPEND")
 	await bot.process_commands(message)
 
 
