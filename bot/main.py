@@ -77,7 +77,7 @@ bad_word = {
 }
 
 exceptions = {
-	"retardant", "rac+oon","cocoon","tycoon","cooncan", "puccoon","coontie", "coonskin", "coonhound", "beanery", "beaneries", "pachinko", "chinkapin", "chinquapin", "chinch", "chincapin", "vandyke", "klondike","fagin","fage","[a-mo-zA-MO-Z]nig", "[a-mo-zA-MO-Z]nig[a-fh-zA-FH-Z]"
+	"retardant", "rac+oon","cocoon","tycoon","cooncan", "puccoon","coontie", "coonskin", "coonhound", "beanery", "beaneries", "pachinko", "chinkapin", "chinquapin", "chinch", "chincapin", "vandyke", "klondike","fagin","fage","[a-mo-zA-MO-Z]nig", "[a-mo-zA-MO-Z\s]nig[a-fh-zA-FH-Z]"
 }
 
 role_type_dictionary = {
@@ -133,7 +133,6 @@ async def on_message_edit(before, message):
 	for pattern in bad_word:
 		result = re.search(pattern, str)
 		if result:
-			print("Found Match")
 			matched = True
 			match += 1
 
@@ -145,7 +144,8 @@ async def on_message_edit(before, message):
 	if matched == True and match > 0:
 		channel = bot.get_channel(channels['bot-dev'])
 		await channel.send(message.author.display_name + " edited message in " + "Channel **" + message.channel.name + "**:\n" + before.content + "\nto\n " +  "||" + message.content+ "||")
-		#await message.delete()
+		await message.delete()
+		
 	await bot.process_commands(message)
 
 
