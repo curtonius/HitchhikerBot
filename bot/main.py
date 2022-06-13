@@ -119,12 +119,9 @@ async def on_ready():
 		print('We have logged in as {0.user}'.format(bot))
 
 @bot.event
-async def on_raw_message_edit(payload):
-	message = payload.cached_message
-
-	if not message:
-		channel = bot.get_channel(payload.channel_id)
-		message = channel.fetch_message(payload.message_id)
+async def on_message_edit(before, after):
+	message = after
+		
 	if message.author == bot.user:
 		return
 
@@ -148,7 +145,7 @@ async def on_raw_message_edit(payload):
 
 	if matched == True and match != 0:
 		channel = bot.get_channel(channels['bot-dev'])
-		await channel.send(message.author.display_name + " edited message in " + "Channel **" + message.channel.name + "**:\n" + payload.cached_message.content + "\nto\n " +  "||" + message.content+ "||")
+		await channel.send(message.author.display_name + " edited message in " + "Channel **" + message.channel.name + "**:\n" + before.content + "\nto\n " +  "||" + message.content+ "||")
 		await message.delete()
 
 	await bot.process_commands(message)
