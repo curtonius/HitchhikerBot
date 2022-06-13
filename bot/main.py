@@ -135,12 +135,12 @@ async def on_message_edit(before, message):
 		if result:
 			matched = True
 			match += 1
-			print(match)
 
 	for pattern in exceptions:
 		result = re.search(pattern, str)
 		if result and matched == True:
 			match -= 1
+			print(match)
 
 	if matched == True and match > 0:
 		channel = bot.get_channel(channels['bot-dev'])
