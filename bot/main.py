@@ -143,7 +143,7 @@ async def on_message(message):
 
 	if matched == True and match != 0:
 		channel = bot.get_channel(channels['bot-dev'])
-		await channel.send(message.author.display_name + " posted in " + "Channel **" + message.channel.name + "**:\n" + message.content )
+		await channel.send(message.author.display_name + " posted in " + "Channel **" + message.channel.name + "**:\n||" + message.content + "||" )
 		await message.delete()
 
 	await bot.process_commands(message)
