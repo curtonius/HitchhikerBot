@@ -107,7 +107,7 @@ role_type_dictionary = {
 
 channels = {
   "🔔-assign-roles": 951692177086488626,
-  "bot-dev": 958468714846634004
+  "bot-dev": 949585154396016662
 }
 
 
@@ -195,6 +195,12 @@ async def on_raw_reaction_remove(payload):
 async def get_channel_id(ctx):
   channel = bot.get_channel(channels['bot-dev'])
   await channel.send('Channel **' + ctx.channel.name + '** ID: ' + str(ctx.channel.id))
+  await ctx.message.delete()
+
+@bot.command()
+async def send_message(ctx):
+  channel = bot.get_channel(channels['bot-dev'])
+  await channel.send(ctx.message.content + "... What do you know about " + ctx.message.content + "?")
   await ctx.message.delete()
 
 @bot.command()
