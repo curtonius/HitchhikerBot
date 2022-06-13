@@ -77,7 +77,7 @@ bad_word = {
 }
 
 exceptions = {
-	"retardant", "rac+oon","cocoon","tycoon","cooncan", "puccoon","coontie", "coonskin", "coonhound", "beanery", "beaneries", "pachinko", "chinkapin", "chinquapin", "chinch", "chincapin", "vandyke", "klondike","fagin","fage","[a-mo-zA-MO-Z]nig", "[a-mo-zA-MO-Z\s]nig[a-fh-zA-FH-Z]"
+	"retardant", "rac+oon","cocoon","tycoon","cooncan", "puccoon","coontie", "coonskin", "coonhound", "beanery", "beaneries", "pachinko", "chinkapin", "chinquapin", "chinch", "chincapin", "vandyke", "klondike","fagin","fage","[a-mo-zA-MO-Z]nig", "[a-mo-zA-MO-Z]nig[a-fh-zA-FH-Z]"
 }
 
 role_type_dictionary = {
@@ -135,6 +135,7 @@ async def on_message_edit(before, message):
 		if result:
 			matched = True
 			match += 1
+			print(match)
 
 	for pattern in exceptions:
 		result = re.search(pattern, str)
