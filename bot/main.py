@@ -107,8 +107,8 @@ role_type_dictionary = {
 
 channels = {
   "🔔-assign-roles": 951692177086488626,
-	"bot-dev": 949585154396016662
-	#949585154396016662 Fake Server
+	"bot-dev": 958468714846634004
+	#959207267461369856 Fake Server
 	#958468714846634004 Real server
 }
 
@@ -141,7 +141,6 @@ async def on_message_edit(before, message):
 		if result and matched == True:
 			match -= 1
 
-	print(match)
 	if matched == True and match > 0:
 		channel = bot.get_channel(channels['bot-dev'])
 		await channel.send(message.author.display_name + " edited message in " + "Channel **" + message.channel.name + "**:\n" + before.content + "\nto\n " +  "||" + message.content+ "||")
@@ -173,7 +172,6 @@ async def on_message(message):
 		if result and matched == True:
 			match -= 1
 
-	print(match)
 	if matched == True and match > 0:
 		channel = bot.get_channel(channels['bot-dev'])
 		await channel.send(message.author.display_name + " posted in " + "Channel **" + message.channel.name + "**:\n||" + message.content + "||" )
