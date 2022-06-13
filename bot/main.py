@@ -119,7 +119,11 @@ async def on_ready():
 		print('We have logged in as {0.user}'.format(bot))
 
 @bot.event
-async def on_message_edit(before, message):
+async def on_message_edit(before, after):
+	print("Before: " + before)
+	print("After: " + after)
+	message = after
+		
 	if message.author == bot.user:
 		return
 
