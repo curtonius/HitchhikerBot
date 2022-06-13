@@ -118,6 +118,38 @@ async def on_ready():
 		await channel.send("Marvin the Robot Updated to V.2.0.4...SIGH")
 		print('We have logged in as {0.user}'.format(bot))
 
+@bot.event
+async def on_raw_message_edit(payload):
+	channel = bot.get_channel(payload.channel_id)
+	message = channel.fetch_message(payload.message_id)
+	if message.author == bot.user:
+		return
+
+	str = message.content
+	for replacer in replace.keys():
+		str = str.replace(replacer, replace[replacer])
+		
+	matched = False
+	match = 0
+	
+	for pattern in bad_word:
+		result = re.search(pattern, str)
+		if result:
+			matched = True
+			match += 1
+
+	for pattern in exceptions:
+		result = re.search(pattern, str)
+		if result and matched == True:
+			match -= 1
+
+	if matched == True and match != 0:
+		channel = bot.get_channel(channels['bot-dev'])
+		await channel.send(message.author.display_name + " edited message in " + "Channel **" + message.channel.name + "**:\n" + payload.cached_message.content + "\nto\n " +  "||" + message.content+ "||")
+		await message.delete()
+
+	await bot.process_commands(message)
+
 
 @bot.event
 async def on_message(message):
