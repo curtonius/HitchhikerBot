@@ -113,7 +113,9 @@ channels = {
 
 @bot.event
 async def on_ready():
-    print('We have logged in as {0.user}'.format(bot))
+		channel = bot.get_channel(channels['bot-dev'])
+		await channel.send("Bot Updates to V.2.0.0")
+		print('We have logged in as {0.user}'.format(bot))
 
 
 @bot.event
@@ -133,13 +135,11 @@ async def on_message(message):
 		if result:
 			matched = True
 			match += 1
-			print("Matched with: " + pattern)
 
 	for pattern in exceptions:
 		result = re.search(pattern, str)
 		if result and matched == True:
 			match -= 1
-			print("Unmatched with: " + pattern)
 
 	if matched == True and match != 0:
 		channel = bot.get_channel(channels['bot-dev'])
