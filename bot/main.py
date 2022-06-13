@@ -107,14 +107,14 @@ role_type_dictionary = {
 
 channels = {
   "🔔-assign-roles": 951692177086488626,
-  "bot-dev": 949585154396016662
+  "bot-dev": 958468714846634004
 }
 
 
 @bot.event
 async def on_ready():
 		channel = bot.get_channel(channels['bot-dev'])
-		await channel.send("Bot Updated to V.2.0.2")
+		await channel.send("Bot Updated to V.2.0.3")
 		print('We have logged in as {0.user}'.format(bot))
 
 
