@@ -107,7 +107,7 @@ role_type_dictionary = {
 
 channels = {
   "🔔-assign-roles": 951692177086488626,
-  "bot-dev": 958468714846634004
+  "bot-dev": 949585154396016662
 }
 
 
