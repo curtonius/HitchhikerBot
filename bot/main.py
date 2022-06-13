@@ -124,6 +124,7 @@ async def on_message_edit(before, message):
 		return
 
 	str = message.content
+	print(str)
 	for replacer in replace.keys():
 		str = str.replace(replacer, replace[replacer])
 		
@@ -141,8 +142,6 @@ async def on_message_edit(before, message):
 		if result and matched == True:
 			match -= 1
 
-	print(matched)
-	print(match)
 	if matched == True and match > 0:
 		channel = bot.get_channel(channels['bot-dev'])
 		await channel.send(message.author.display_name + " edited message in " + "Channel **" + message.channel.name + "**:\n" + before.content + "\nto\n " +  "||" + message.content+ "||")
