@@ -64,7 +64,7 @@ replace = {
 
 bad_word = {
 	"re+ta+rd", #r slur
-	"^n+i+g+[eau]r?", #n slur
+	"n+i+g+[eau]r?", #n slur
 	"[qck]o+o+n", #c slur
 	"we+tba+[qck]", #wetback
 	"be+[ae]n[euar]r", #beaner
@@ -77,7 +77,7 @@ bad_word = {
 }
 
 exceptions = {
-	"retardant", "rac+oon","cocoon","tycoon","cooncan", "puccoon","coontie", "coonskin", "coonhound", "beanery", "beaneries", "pachinko", "chinkapin", "chinquapin", "chinch", "chincapin", "vandyke", "klondike","fagin","fage","[a-mo-zA-MO-Z]nig", "nig[a-fh-zA-FH-Z]"
+	"retardant", "rac+oon","cocoon","tycoon","cooncan", "puccoon","coontie", "coonskin", "coonhound", "beanery", "beaneries", "pachinko", "chinkapin", "chinquapin", "chinch", "chincapin", "vandyke", "klondike","fagin","fage","[a-mo-zA-MO-Z]nig", "[a-mo-zA-MO-Z]nig[a-fh-zA-FH-Z]"
 }
 
 role_type_dictionary = {
