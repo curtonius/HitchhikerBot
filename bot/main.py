@@ -201,7 +201,7 @@ async def get_channel_id(ctx):
 async def send_message(ctx):
 	channel = bot.get_channel(channels['bot-dev'])
 	str = ctx.message.content
-	str = str.removeprefix("!send_message ")
+	str = str.replace("!send_message ","")
 	await channel.send("Hmph.." + str + "... What do you know about " + str + "?")
 	await ctx.message.delete()
 
