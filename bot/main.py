@@ -64,7 +64,7 @@ replace = {
 
 bad_word = {
 	"re+ta+rd", #r slur
-	"ni+g+[eau]r?", #n slur
+	"^n+i+g+[eau]r?", #n slur
 	"[qck]o+o+n", #c slur
 	"we+tba+[qck]", #wetback
 	"be+[ae]n[euar]r", #beaner
@@ -114,7 +114,7 @@ channels = {
 @bot.event
 async def on_ready():
 		channel = bot.get_channel(channels['bot-dev'])
-		await channel.send("Bot Updates to V.2.0.0")
+		await channel.send("Bot Updated to V.2.0.1")
 		print('We have logged in as {0.user}'.format(bot))
 
 
