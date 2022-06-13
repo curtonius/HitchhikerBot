@@ -120,8 +120,11 @@ async def on_ready():
 
 @bot.event
 async def on_raw_message_edit(payload):
-	channel = bot.get_channel(payload.channel_id)
-	message = channel.fetch_message(payload.message_id)
+	message = payload.cached_message
+
+	if not message:
+		channel = bot.get_channel(payload.channel_id)
+		message = channel.fetch_message(payload.message_id)
 	if message.author == bot.user:
 		return
 
