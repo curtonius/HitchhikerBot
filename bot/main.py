@@ -127,13 +127,13 @@ async def on_message_edit(before, message):
 	for replacer in replace.keys():
 		str = str.replace(replacer, replace[replacer])
 
-	print(str)
 	matched = False
 	match = 0
 	
 	for pattern in bad_word:
 		result = re.search(pattern, str)
 		if result:
+			print("Found Match")
 			matched = True
 			match += 1
 
