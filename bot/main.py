@@ -124,7 +124,7 @@ async def on_message_edit(before, message):
 		return
 
 	str = message.content
-	print(str)
+	print(message.conent)
 	for replacer in replace.keys():
 		str = str.replace(replacer, replace[replacer])
 		
