@@ -120,8 +120,8 @@ async def on_ready():
 
 @bot.event
 async def on_message_edit(before, after):
-	print("Before: " + before)
-	print("After: " + after)
+	print("Before: " + before.content)
+	print("After: " + after.content)
 	message = after
 		
 	if message.author == bot.user:
