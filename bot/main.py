@@ -119,11 +119,7 @@ async def on_ready():
 		print('We have logged in as {0.user}'.format(bot))
 
 @bot.event
-async def on_message_edit(before, after):
-	print("Before: " + before.content)
-	print("After: " + after.content)
-	message = after
-		
+async def on_message_edit(before, message):
 	if message.author == bot.user:
 		return
 
@@ -148,7 +144,7 @@ async def on_message_edit(before, after):
 	if matched == True and match != 0:
 		channel = bot.get_channel(channels['bot-dev'])
 		await channel.send(message.author.display_name + " edited message in " + "Channel **" + message.channel.name + "**:\n" + before.content + "\nto\n " +  "||" + message.content+ "||")
-		await message.delete()
+		#await message.delete()
 
 	await bot.process_commands(message)
 
