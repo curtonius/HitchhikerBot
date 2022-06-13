@@ -114,7 +114,7 @@ channels = {
 @bot.event
 async def on_ready():
 		channel = bot.get_channel(channels['bot-dev'])
-		await channel.send("Bot Updated to V.2.0.3")
+		await channel.send("Marvin the Robot Updated to V.2.0.4...SIGH")
 		print('We have logged in as {0.user}'.format(bot))
 
 
@@ -198,11 +198,19 @@ async def get_channel_id(ctx):
   await ctx.message.delete()
 
 @bot.command()
+async def send_depressing_message(ctx):
+	channel = bot.get_channel(channels['bot-dev'])
+	str = ctx.message.content
+	str = str.replace("!send_depressing_message ","")
+	await channel.send("Hmph.." + str + "... What do you know about " + str + "?")
+	await ctx.message.delete()
+
+@bot.command()
 async def send_message(ctx):
 	channel = bot.get_channel(channels['bot-dev'])
 	str = ctx.message.content
 	str = str.replace("!send_message ","")
-	await channel.send("Hmph.." + str + "... What do you know about " + str + "?")
+	await channel.send(str)
 	await ctx.message.delete()
 
 @bot.command()
