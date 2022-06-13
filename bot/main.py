@@ -140,8 +140,8 @@ async def on_message_edit(before, message):
 		result = re.search(pattern, str)
 		if result and matched == True:
 			match -= 1
-			print(match)
 
+	print(match)
 	if matched == True and match > 0:
 		channel = bot.get_channel(channels['bot-dev'])
 		await channel.send(message.author.display_name + " edited message in " + "Channel **" + message.channel.name + "**:\n" + before.content + "\nto\n " +  "||" + message.content+ "||")
