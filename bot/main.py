@@ -199,9 +199,11 @@ async def get_channel_id(ctx):
 
 @bot.command()
 async def send_message(ctx):
-  channel = bot.get_channel(channels['bot-dev'])
-  await channel.send(ctx.message.content + "... What do you know about " + ctx.message.content + "?")
-  await ctx.message.delete()
+	channel = bot.get_channel(channels['bot-dev'])
+	str = ctx.message.content
+	str = str.removeprefix("!send_message ")
+	await channel.send("Hmph.." + str + "... What do you know about " + str + "?")
+	await ctx.message.delete()
 
 @bot.command()
 async def prime_reactions(ctx):
