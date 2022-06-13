@@ -107,9 +107,10 @@ role_type_dictionary = {
 
 channels = {
   "🔔-assign-roles": 951692177086488626,
-  "bot-dev": 958468714846634004
+	"bot-dev": 949585154396016662
+	#949585154396016662 Fake Server
+	#958468714846634004 Real server
 }
-
 
 @bot.event
 async def on_ready():
