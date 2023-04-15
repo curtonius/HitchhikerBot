@@ -84,11 +84,12 @@ exceptions = {
 }
 
 role_type_dictionary = {
-    'React to this message with the notification roles you would like.\n🔴  Youtube Notifications\n🟣  Stream Notifications\n🟡  Announcement Notifications':
+    'React to this message with the notification roles you would like.\n🔴  Youtube Notifications\n🟣  Stream Notifications\n🟡  Announcement Notifications\n🟢  Challenge Notifications':
     {
-        "🔴": 'Youtube Notifications',
-        "🟣": 'Stream Notifications',
-        "🟡": 'Announcement Notifications'
+      "🔴": 'Youtube Notifications',
+			"🟣": 'Stream Notifications',
+      "🟡": 'Announcement Notifications',
+      "🟢": 'Challenge Notifications'
     },
     'React to this message with the gender roles you identify as.\n❤️  He/Him\n🧡  She/Her\n💛  They/Them\n💚  He/They\n💙  She/They\n💜  Name Only\n🤍  Ask for Pronouns':
     {
@@ -117,7 +118,7 @@ channels = {
 @bot.event
 async def on_ready():
     channel = bot.get_channel(channels['bot-dev'])
-    await channel.send("Marvin the Robot Updated to V.2.0.6...SIGH")
+    await channel.send("Marvin the Robot Updated to V.2.0.7...SIGH")
     print('We have logged in as {0.user}'.format(bot))
 
 
