@@ -86,10 +86,10 @@ exceptions = {
 role_type_dictionary = {
     'React to this message with the notification roles you would like.\n🔴  Youtube Notifications\n🟣  Stream Notifications\n🟡  Announcement Notifications\n🟢  Challenge Notifications':
     {
-      "🔴": 'Youtube Notifications',
-			"🟣": 'Stream Notifications',
-      "🟡": 'Announcement Notifications',
-      "🟢": 'Challenge Notifications'
+        "🔴": 'Youtube Notifications',
+        "🟣": 'Stream Notifications',
+        "🟡": 'Announcement Notifications',
+        "🟢": 'Challenge Notifications'
     },
     'React to this message with the gender roles you identify as.\n❤️  He/Him\n🧡  She/Her\n💛  They/Them\n💚  He/They\n💙  She/They\n💜  Name Only\n🤍  Ask for Pronouns':
     {
@@ -104,6 +104,10 @@ role_type_dictionary = {
     'React to this message with a ✅  to accept being pinged by anybody at any time (Non-Notification based pings)':
     {
         "✅": 'Accept Pings'
+    },
+    'React to this message with a ⭐  to accept being pinged for Space Facts!':
+    {
+        "⭐": 'Space Facts'
     }
 }
 
@@ -117,160 +121,160 @@ channels = {
 
 @bot.event
 async def on_ready():
-    channel = bot.get_channel(channels['bot-dev'])
-    await channel.send("Marvin the Robot Updated to V.2.0.7...SIGH")
-    print('We have logged in as {0.user}'.format(bot))
+	channel = bot.get_channel(channels['bot-dev'])
+	await channel.send("Marvin the Robot Updated to V.2.0.8...SIGH")
+	print('We have logged in as {0.user}'.format(bot))
 
 
 @bot.event
 async def on_message_edit(before, message):
-    if message.author == bot.user:
-        return
+	if message.author == bot.user:
+		return
 
-    str = message.content.lower()
-    for replacer in replace.keys():
-        str = str.replace(replacer, replace[replacer])
+	str = message.content.lower()
+	for replacer in replace.keys():
+		str = str.replace(replacer, replace[replacer])
 
-    matched = False
-    match = 0
+	matched = False
+	match = 0
 
-    for pattern in bad_word:
-        result = re.search(pattern, str)
-        if result:
-            matched = True
-            match += 1
+	for pattern in bad_word:
+		result = re.search(pattern, str)
+		if result:
+			matched = True
+			match += 1
 
-    for pattern in exceptions:
-        result = re.search(pattern, str)
-        if result and matched == True:
-            match -= 1
+	for pattern in exceptions:
+		result = re.search(pattern, str)
+		if result and matched == True:
+			match -= 1
 
-    if matched == True and match > 0:
-        channel = bot.get_channel(channels['bot-dev'])
-        await channel.send(message.author.display_name +
-                           " edited message in " + "Channel **" +
-                           message.channel.name + "**:\n" + before.content +
-                           "\nto\n " + "||" + message.content + "||" +
-                           " Matches: " + str(match))
-        await message.delete()
+	if matched == True and match > 0:
+		channel = bot.get_channel(channels['bot-dev'])
+		await channel.send(message.author.display_name +
+		                   " edited message in " + "Channel **" +
+		                   message.channel.name + "**:\n" + before.content +
+		                   "\nto\n " + "||" + message.content + "||" +
+		                   " Matches: " + str(match))
+		await message.delete()
 
-    await bot.process_commands(message)
+	await bot.process_commands(message)
 
 
 @bot.event
 async def on_message(message):
-    if message.author == bot.user:
-        return
+	if message.author == bot.user:
+		return
 
-    str = message.content.lower()
-    for replacer in replace.keys():
-        str = str.replace(replacer, replace[replacer])
+	str = message.content.lower()
+	for replacer in replace.keys():
+		str = str.replace(replacer, replace[replacer])
 
-    matched = False
-    match = 0
+	matched = False
+	match = 0
 
-    for pattern in bad_word:
-        result = re.search(pattern, str)
-        if result:
-            matched = True
-            match += 1
+	for pattern in bad_word:
+		result = re.search(pattern, str)
+		if result:
+			matched = True
+			match += 1
 
-    for pattern in exceptions:
-        result = re.search(pattern, str)
-        if result and matched == True:
-            match -= 1
+	for pattern in exceptions:
+		result = re.search(pattern, str)
+		if result and matched == True:
+			match -= 1
 
-    if matched == True and match > 0:
-        channel = bot.get_channel(channels['bot-dev'])
-        await channel.send(message.author.display_name + " posted in " +
-                           "Channel **" + message.channel.name + "**:\n||" +
-                           message.content + "||" + " Matches: " + str(match))
-        await message.delete()
+	if matched == True and match > 0:
+		channel = bot.get_channel(channels['bot-dev'])
+		await channel.send(message.author.display_name + " posted in " +
+		                   "Channel **" + message.channel.name + "**:\n||" +
+		                   message.content + "||" + " Matches: " + str(match))
+		await message.delete()
 
-    await bot.process_commands(message)
+	await bot.process_commands(message)
 
 
 @bot.event
 async def on_raw_reaction_add(payload):
-    if payload.channel_id != channels["🔔-assign-roles"]:
-        return
+	if payload.channel_id != channels["🔔-assign-roles"]:
+		return
 
-    channel = bot.get_channel(payload.channel_id)
-    message = await channel.fetch_message(payload.message_id)
-    user = payload.member
-    emoji_check = str(payload.emoji)
+	channel = bot.get_channel(payload.channel_id)
+	message = await channel.fetch_message(payload.message_id)
+	user = payload.member
+	emoji_check = str(payload.emoji)
 
-    if message.content in role_type_dictionary.keys():
-        role = None
-        role_dictionary = role_type_dictionary[message.content]
-        if emoji_check in role_dictionary.keys():
-            role = get(user.guild.roles, name=role_dictionary[emoji_check])
-        else:
-            await message.remove_reaction(emoji_check, user)
+	if message.content in role_type_dictionary.keys():
+		role = None
+		role_dictionary = role_type_dictionary[message.content]
+		if emoji_check in role_dictionary.keys():
+			role = get(user.guild.roles, name=role_dictionary[emoji_check])
+		else:
+			await message.remove_reaction(emoji_check, user)
 
-        if role != None:
-            await user.add_roles(role)
+		if role != None:
+			await user.add_roles(role)
 
 
 @bot.event
 async def on_raw_reaction_remove(payload):
-    if payload.channel_id != channels["🔔-assign-roles"]:
-        return
+	if payload.channel_id != channels["🔔-assign-roles"]:
+		return
 
-    channel = bot.get_channel(payload.channel_id)
-    message = await channel.fetch_message(payload.message_id)
-    guild = await bot.fetch_guild(payload.guild_id)
-    user = await guild.fetch_member(payload.user_id)
-    emoji_check = str(payload.emoji)
+	channel = bot.get_channel(payload.channel_id)
+	message = await channel.fetch_message(payload.message_id)
+	guild = await bot.fetch_guild(payload.guild_id)
+	user = await guild.fetch_member(payload.user_id)
+	emoji_check = str(payload.emoji)
 
-    if message.content in role_type_dictionary.keys():
-        role = None
-        role_dictionary = role_type_dictionary[message.content]
-        if emoji_check in role_dictionary.keys():
-            role = get(user.guild.roles, name=role_dictionary[emoji_check])
+	if message.content in role_type_dictionary.keys():
+		role = None
+		role_dictionary = role_type_dictionary[message.content]
+		if emoji_check in role_dictionary.keys():
+			role = get(user.guild.roles, name=role_dictionary[emoji_check])
 
-        if role != None:
-            await user.remove_roles(role)
+		if role != None:
+			await user.remove_roles(role)
 
 
 @bot.command()
 async def get_channel_id(ctx):
-    channel = bot.get_channel(channels['bot-dev'])
-    await channel.send('Channel **' + ctx.channel.name + '** ID: ' +
-                       str(ctx.channel.id))
-    await ctx.message.delete()
+	channel = bot.get_channel(channels['bot-dev'])
+	await channel.send('Channel **' + ctx.channel.name + '** ID: ' +
+	                   str(ctx.channel.id))
+	await ctx.message.delete()
 
 
 @bot.command()
 async def send_depressing_message(ctx):
-    channel = bot.get_channel(channels['bot-dev'])
-    str = ctx.message.content
-    str = str.replace("!send_depressing_message ", "")
-    await channel.send("Hmph.." + str + "... What do you know about " + str +
-                       "?")
-    await ctx.message.delete()
+	channel = bot.get_channel(channels['bot-dev'])
+	str = ctx.message.content
+	str = str.replace("!send_depressing_message ", "")
+	await channel.send("Hmph.." + str + "... What do you know about " + str +
+	                   "?")
+	await ctx.message.delete()
 
 
 @bot.command()
 async def send_message(ctx):
-    channel = bot.get_channel(channels['bot-dev'])
-    str = ctx.message.content
-    str = str.replace("!send_message ", "")
-    await channel.send(str)
-    await ctx.message.delete()
+	channel = bot.get_channel(channels['bot-dev'])
+	str = ctx.message.content
+	str = str.replace("!send_message ", "")
+	await channel.send(str)
+	await ctx.message.delete()
 
 
 @bot.command()
 async def prime_reactions(ctx):
-    if ctx.message.reference == None:
-        return
+	if ctx.message.reference == None:
+		return
 
-    ref_message = await ctx.channel.fetch_message(
-        ctx.message.reference.message_id)
-    await ctx.message.delete()
-    if ref_message.content in role_type_dictionary.keys():
-        for emoji_check in role_type_dictionary[ref_message.content].keys():
-            await ref_message.add_reaction(emoji_check)
+	ref_message = await ctx.channel.fetch_message(
+	    ctx.message.reference.message_id)
+	await ctx.message.delete()
+	if ref_message.content in role_type_dictionary.keys():
+		for emoji_check in role_type_dictionary[ref_message.content].keys():
+			await ref_message.add_reaction(emoji_check)
 
 
 server.server()
