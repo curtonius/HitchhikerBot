@@ -122,7 +122,7 @@ channels = {
 @bot.event
 async def on_ready():
 	channel = bot.get_channel(channels['bot-dev'])
-	await channel.send("Marvin the Robot Updated to V.2.0.8...SIGH")
+	await channel.send("Marvin the Robot Updated to V.2.1.0...SIGH")
 	print('We have logged in as {0.user}'.format(bot))
 
 
